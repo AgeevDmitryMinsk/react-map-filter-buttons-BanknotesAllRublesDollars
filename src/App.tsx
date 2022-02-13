@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
 import './App.css';
 
+type MoneyArrayType = {
+    banknot: BanknotType
+    nominal: number
+    banknotNumber: string
+}[]
 
-type BanknotType = `all` | `rubles` | `dollars`
+type BanknotType = `all` | `rubles` | `dollars` | `BYN`
 
 function App() {
 
-    const money = [
+    const money: MoneyArrayType = [
         {banknot: `rubles`, nominal: 100, banknotNumber: `ARX1234567890`  },
         {banknot: `rubles`, nominal: 100, banknotNumber: `BRX1234567890`  },
         {banknot: `rubles`, nominal: 100, banknotNumber: `CRX1234567890`  },
@@ -16,6 +21,10 @@ function App() {
         {banknot: `dollars`, nominal: 100, banknotNumber: `BBX1234567890` },
         {banknot: `dollars`, nominal: 100, banknotNumber: `CCX1234567890` },
         {banknot: `dollars`, nominal: 100, banknotNumber: `DDX1234567890` },
+        {banknot: `BYN`, nominal: 100, banknotNumber: `ZAX1234567890` },
+        {banknot: `BYN`, nominal: 100, banknotNumber: `ZBX1234567890` },
+        {banknot: `BYN`, nominal: 100, banknotNumber: `ZCX1234567890` },
+        {banknot: `BYN`, nominal: 100, banknotNumber: `ZDX1234567890` },
     ]
     const [nameBanknoteFilteredState, setNameBanknoteFilteredState] = useState(`all`)
     console.log(22, `nameBanknoteFilteredState = ${nameBanknoteFilteredState}`)
@@ -23,6 +32,7 @@ function App() {
     let currentBanknote = money
     if (nameBanknoteFilteredState === `rubles`) { currentBanknote = money.filter((x)=>x.banknot===`rubles`)}
     if (nameBanknoteFilteredState === `dollars`) { currentBanknote = money.filter((x)=>x.banknot===`dollars`)}
+    if (nameBanknoteFilteredState === `BYN`) { currentBanknote = money.filter((x)=>x.banknot===`BYN`)}
 
 
     function onClickHandler(nameBanknote: BanknotType) {
@@ -40,11 +50,11 @@ function App() {
                     <span> {x.banknotNumber} </span>
                 </li>
             )
-            console.log(x)
         })}
         <button onClick={()=>onClickHandler(`all`)}>all</button>
         <button onClick={()=>onClickHandler(`rubles`)}>rubles</button>
         <button onClick={()=>onClickHandler(`dollars`)}>dollars</button>
+        <button onClick={()=>onClickHandler(`BYN`)}>белорусские рубли</button>
     </div>
   );
 }
