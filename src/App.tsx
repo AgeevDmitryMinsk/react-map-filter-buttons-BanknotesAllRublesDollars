@@ -6,7 +6,7 @@ type BanknotType = `all` | `rubles` | `dollars`
 
 function App() {
 
-    const [money, setMoney] = useState([
+    const money = [
         {banknot: `rubles`, nominal: 100, banknotNumber: `ARX1234567890`  },
         {banknot: `rubles`, nominal: 100, banknotNumber: `BRX1234567890`  },
         {banknot: `rubles`, nominal: 100, banknotNumber: `CRX1234567890`  },
@@ -16,18 +16,18 @@ function App() {
         {banknot: `dollars`, nominal: 100, banknotNumber: `BBX1234567890` },
         {banknot: `dollars`, nominal: 100, banknotNumber: `CCX1234567890` },
         {banknot: `dollars`, nominal: 100, banknotNumber: `DDX1234567890` },
-    ])
+    ]
+    const [nameBanknoteFilteredState, setNameBanknoteFilteredState] = useState(`all`)
+    console.log(22, `nameBanknoteFilteredState = ${nameBanknoteFilteredState}`)
 
-    const [nameBanknoteFiltered, setNameBanknoteFiltered] = useState(`all`)
-    console.log(22, `nameBanknoteFiltered = ${nameBanknoteFiltered}`)
     let currentBanknote = money
-    if (nameBanknoteFiltered === `rubles`) { currentBanknote = money.filter((x)=>x.banknot===`rubles`)}
-    if (nameBanknoteFiltered === `dollars`) { currentBanknote = money.filter((x)=>x.banknot===`dollars`)}
+    if (nameBanknoteFilteredState === `rubles`) { currentBanknote = money.filter((x)=>x.banknot===`rubles`)}
+    if (nameBanknoteFilteredState === `dollars`) { currentBanknote = money.filter((x)=>x.banknot===`dollars`)}
 
 
     function onClickHandler(nameBanknote: BanknotType) {
-        setNameBanknoteFiltered(nameBanknote)
-        return console.log(30, `nameBanknote = ${nameBanknote}`, `nameBanknoteFiltered = ${nameBanknoteFiltered}`)
+        setNameBanknoteFilteredState(nameBanknote)
+        return console.log(30, `nameBanknote = ${nameBanknote}`, `nameBanknoteFilteredState = ${nameBanknoteFilteredState}`)
     }
 
     return (
